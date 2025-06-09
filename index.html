@@ -43,7 +43,10 @@
   </script> -->
 
   <script>
-    console.log('%c seda [ 1 ]-47', 'font-size:13px; background:pink; color:#bf2c9f;', 1)
+    setInterval(() => {
+      const catalogOpenLeft = document.querySelector(".catalog-open-left");
+      catalogOpenLeft?.setAttribute("translate", "no");
+    }, 1000);
   </script>
 </body>
 
