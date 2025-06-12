@@ -67306,6 +67306,8 @@
         },
         onPaginationChanged: function () {
           console.log("Call WebAppApi >>> onPaginationChanged()");
+          // const data = window.NeatEpubViewer.getCurrentPositionInfo().currentPosition
+          // location.href = location.href + `&spineIndex=${data.spineIndex}&progress=${data.progress}`;
           var e = window.NeatEpubViewer.getCurrentPositionInfo(),
             t = "#nr_spineIndex_" + e.spineIndex,
             r = $(t),
@@ -67357,6 +67359,24 @@
           };
           console.log("onPaginationChanged", l),
             window.NeatReader && window.NeatReader.onPaginationChanged(l);
+            const currentPosition = l.currentPosition
+            console.log('%c seda [ currentPosition ]-67363', 'font-size:13px; background:pink; color:#bf2c9f;', currentPosition)
+            const currentUrl = new URL(location.href);
+const hashPart = currentUrl.hash.substring(1); // 去掉#号
+
+// 分离路径和查询参数
+const [hashPath, hashQuery = ''] = hashPart.split('?');
+
+// 创建URLSearchParams来处理hash中的查询参数
+const hashParams = new URLSearchParams(hashQuery);
+hashParams.set('spineIndex', currentPosition.spineIndex);
+hashParams.set('progress', currentPosition.progress);
+
+// 重新构建URL
+const newHash = `#${hashPath}?${hashParams.toString()}`;
+location.href = `${currentUrl.origin}${currentUrl.pathname}${currentUrl.search}${newHash}`;
+
+
         },
         showSelectionMenu: function (e) {
           console.log("Call WebAppApi >>> showSelectionMenu(data)", e),
