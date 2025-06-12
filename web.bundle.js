@@ -67370,7 +67370,7 @@ const [hashPath, hashQuery = ''] = hashPart.split('?');
 // 创建URLSearchParams来处理hash中的查询参数
 const hashParams = new URLSearchParams(hashQuery);
 hashParams.set('spineIndex', currentPosition.spineIndex);
-hashParams.set('progress', currentPosition.progress);
+hashParams.set('tocTitle', l.tocTitle);
 
 // 重新构建URL
 const newHash = `#${hashPath}?${hashParams.toString()}`;
